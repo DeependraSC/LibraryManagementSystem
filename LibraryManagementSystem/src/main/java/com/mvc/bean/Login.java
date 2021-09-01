@@ -1,4 +1,4 @@
-package com.cts.bean;
+package com.mvc.bean;
 
 public class Login {
 	  private String Username;
