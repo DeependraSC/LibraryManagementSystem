@@ -2,8 +2,8 @@ package com.mvc.Dao;
 
 import java.util.List;
 
-import com.cts.bean.Book;
-import com.cts.bean.User;
+import com.mvc.bean.Book;
+import com.mvc.bean.User;
 
 
 public interface BookDao {
