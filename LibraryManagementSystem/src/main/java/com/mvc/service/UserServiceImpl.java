@@ -1,11 +1,11 @@
-package com.cts.service;
+package com.mvc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.Dao.UserDao;
-import com.cts.bean.Login;
-import com.cts.bean.User;
+import com.mvc.Dao.UserDao;
+import com.mvc.bean.Login;
+import com.mvc.bean.User;
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -13,12 +13,12 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	public void register(User user) throws Exception {
-		// TODO Auto-generated method stub
+		
 		userDao.register(user);
 	}
 
 	public User validateUser(Login login) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return userDao.validateUser(login);
 	}
 
