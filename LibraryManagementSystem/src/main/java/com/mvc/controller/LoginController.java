@@ -1,4 +1,4 @@
-package com.cts.controller;
+package com.mvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.cts.bean.Login;
-import com.cts.bean.User;
-import com.cts.service.UserService;
+import com.mvc.bean.Login;
+import com.mvc.bean.User;
+import com.mvc.service.UserService;
+
 @Controller
 public class LoginController {
   @Autowired
