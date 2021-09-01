@@ -1,4 +1,4 @@
-package com.cts.Dao;
+package com.mvc.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,18 +15,11 @@ public class UserDaoImpl implements UserDao {
   @Autowired
   JdbcTemplate jdbcTemplate;
  
-  
-  
-  
-  
   public void register(User user) {
     String sql = "insert into users values(?,?,?,?,?)";
     jdbcTemplate.update(sql, new Object[] { user.getName(), user.getUsername(), user.getPassword(), 
      user.getDOB(), user.getAddress() });
     }
-  
-  
-  
   
   public User validateUser(Login login) {
     String sql = "select * from users where username='" + login.getUsername() + "' and password='" + login.getPassword()
@@ -36,10 +29,6 @@ public class UserDaoImpl implements UserDao {
     }
   }
   
-
-
-
-
 
 class UserMapper implements RowMapper<User> {
   public User mapRow(ResultSet rs, int arg1) throws SQLException {
