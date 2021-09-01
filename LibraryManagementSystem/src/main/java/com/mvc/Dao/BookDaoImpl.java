@@ -1,4 +1,4 @@
-package com.cts.Dao;
+package com.mvc.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,12 +18,10 @@ import com.cts.bean.Book;
 public class BookDaoImpl implements BookDao {
 
 	 @Autowired
-	  DataSource dataSource;
-	  @Autowired
-	  JdbcTemplate jdbcTemplate;
+	 DataSource dataSource;
+	 @Autowired
+	 JdbcTemplate jdbcTemplate;
 	  
-	 
-
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -31,14 +29,12 @@ public class BookDaoImpl implements BookDao {
 
 
 	public void save(Book book) {
-		// TODO Auto-generated method stub
 		String sql = "insert into book values(?,?,?,?,?)";
 	    jdbcTemplate.update(sql, new Object[] { book.getBookcode(), book.getBookname(), book.getBooktype(), 
 	     book.getPrice(), book.getDescription() });
 	}
 	
 	public int delete(String bookcode) {
-		// TODO Auto-generated method stub
 		 String sql="delete from book where bookcode='"+bookcode+"'";    
 		    return jdbcTemplate.update(sql);  
 	}    
@@ -59,7 +55,7 @@ public class BookDaoImpl implements BookDao {
 
 
 	public Book getBookByBookcode(String bookcode) {
-		// TODO Auto-generated method stub
+		
 		 String sql="select * from book where bookcode=?";    
 		    return jdbcTemplate.queryForObject(sql, new Object[]{bookcode},new BeanPropertyRowMapper<Book>(Book.class));  
 		
@@ -67,7 +63,7 @@ public class BookDaoImpl implements BookDao {
 
 
 	public int update(Book book) {
-		// TODO Auto-generated method stub
+		
 		 String sql="update book set Bookname='"+book.getBookname()+"', Booktype='"+book.getBooktype()+"', Price="+book.getPrice()+",Description='"+book.getDescription()+"' where bookcode='"+book.getBookcode()+"'";    
 		    return jdbcTemplate.update(sql);  
 		
@@ -75,9 +71,6 @@ public class BookDaoImpl implements BookDao {
 
 
 	public List<Book> getBookByBooktype(String booktype) {
-		
-	
-	//	System.out.println("Deependra");
 	
 		  return jdbcTemplate.query("select * from book where booktype='"+booktype+"'",new RowMapper<Book>(){    
 		        public Book mapRow(ResultSet rs, int row) throws SQLException {    
@@ -94,10 +87,4 @@ public class BookDaoImpl implements BookDao {
 	
 	}
 }
-
-
-	
-
-	
-
 
