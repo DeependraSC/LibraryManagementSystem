@@ -1,4 +1,4 @@
-package com.cts.service;
+package com.mvc.service;
 
 import java.util.List;
 import java.util.Random;
@@ -6,9 +6,9 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.Dao.BookDao;
-import com.cts.Dao.UserDao;
-import com.cts.bean.Book;
+import com.mvc.Dao.BookDao;
+import com.mvc.Dao.UserDao;
+import com.mvc.bean.Book;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -19,35 +19,27 @@ public class BookServiceImpl implements BookService{
 	
 
 	public void save(Book book) throws Exception {
-		// TODO Auto-generated method stub
 		String temp=book.getBookname();
-		
-		//System.out.println(temp);
-		
 		 Random rand = new Random();
 		    int ran = 10+rand.nextInt(90); 
-	       
-	   String ranstr=Integer.toString(ran);
-	       // System.out.println("Random Integers: "+ran); 
-	        String genid=temp.substring(0, 4).concat(ranstr);
-	        
-	        //System.out.println(genid);
-	        book.setBookcode(genid);
+	         String ranstr=Integer.toString(ran);
+	      String genid=temp.substring(0, 4).concat(ranstr);
+	       book.setBookcode(genid);
 		bookDao.save(book);
 	}
 
 	public void delete(String bookcode) {
-		// TODO Auto-generated method stub
+		
 		bookDao.delete(bookcode);
 	}
 
 	public void update(Book book) {
-		// TODO Auto-generated method stub
+		
 		bookDao.update(book);
 	}
 
 	public Book getBookByBookcode(String bookcode) {
-		// TODO Auto-generated method stub
+		
 		return bookDao.getBookByBookcode(bookcode);
 	}
 
