@@ -1,4 +1,4 @@
-package com.cts.controller;
+package com.mvc.controller;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 
-import com.cts.Dao.BookDao;
-import com.cts.bean.Book;
-import com.cts.bean.User;
-import com.cts.service.BookService;
-import com.cts.service.UserService;
+import com.mvc.Dao.BookDao;
+import com.mvc.bean.Book;
+import com.mvc.bean.User;
+import com.mvc.service.BookService;
+import com.mvc.service.UserService;
 
 @Controller
 public class BookController {
@@ -32,47 +32,34 @@ public class BookController {
 	  public UserService userService;
 	 @Autowired 
 	public BookDao bookDao;
-	// @Autowired 
-	//public User user;
+	
 	  @RequestMapping(value = "/bookreg", method = RequestMethod.GET)
 	  public ModelAndView showBooks() {
 	    ModelAndView mav = new ModelAndView("bookreg");
 	    mav.addObject("book", new Book());
-	  
-		//((Model) mav).addAttribute("Name", user.getName());
 	    return mav;
 	  }
 	  
 	  @RequestMapping(value = "/bookregistration", method = RequestMethod.POST)
 	  public ModelAndView addBook(@ModelAttribute("book") Book book) throws Exception {
 	  bookService.save(book);
-	// System.out.print("register book");
-	return new ModelAndView("redirect:/bookview");
+	   return new ModelAndView("redirect:/bookview");
 	  }
 	  
 	    @RequestMapping("/bookview")    
 	    public String viewBook(Model m){    
 	        List<Book> list=bookDao.getBook();    
 	        m.addAttribute("list",list); 
-	    
-			//m.addAttribute("Name", user.getName());
-	        //System.out.print( user.getName());
-	        return "booksview";  
+	      return "booksview";  
 	        
 	    }    
 	  
 	    @RequestMapping(value="/deletebook/{bookcode}",method = RequestMethod.GET)    
 	    public ModelAndView delete(@PathVariable String bookcode){    
 	        bookService.delete(bookcode);   
-	       // System.out.print("register book");
-	        return new ModelAndView("redirect:/bookview");    
+	     return new ModelAndView("redirect:/bookview");    
 	    } 
 	    
-	    
-	    
-	    
-	    
-	    //only edit trial
 	    @RequestMapping(value="/editsave",method = RequestMethod.POST)    
 	    public String editsave(@ModelAttribute("book") Book book){    
 	      
@@ -85,37 +72,22 @@ public class BookController {
 	        m.addAttribute("command",book);  
 	        return "bookeditform";    
 	    }    
-	    /* It updates model object. */    
-	   
+	  
 	    @RequestMapping("/searchbook")    
 	    public String searchBook(Model m){    
 	        List<Book> list=bookDao.getBook();    
 	        m.addAttribute("list",list); 
 	       m.addAttribute("book", new Book());
-			
-	       // m.addAttribute("Name", user.getName());
+		
 	        return "viewbook";    
 	    }    
 	    
 	    @RequestMapping(value="/viewselectedbook",method = RequestMethod.POST)    
 	    public String viewselectedbook(@ModelAttribute("book") Book book, Model m){    
-	    	//System.out.println(book.getBooktype());
-	    	
-		//	System.out.println(book.getDescription());
-			
 	    	 List<Book> list = bookDao.getBookByBooktype(book.getBooktype());  
-	     //	 System.out.println(list);
 	    	  m.addAttribute("list",list); 
-	       // System.out.print("register book");
 	        return "viewselectedbook";    
 	    } 
 	   
-	    
-	   /* @ModelAttribute("book")
-		public Book bookObject() {
-			Book book = new Book();
-			return book;
-
-		}*/
-	   
+	
 }
