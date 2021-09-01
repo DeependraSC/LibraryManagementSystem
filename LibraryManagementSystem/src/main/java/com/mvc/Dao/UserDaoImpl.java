@@ -7,8 +7,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import com.cts.bean.Login;
-import com.cts.bean.User;
+import com.mvc.bean.Login;
+import com.mvc.bean.User;
+
 public class UserDaoImpl implements UserDao {
   @Autowired
   DataSource dataSource;
