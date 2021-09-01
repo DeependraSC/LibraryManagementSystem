@@ -1,4 +1,4 @@
-package com.cts.Dao;
+package com.mvc.Dao;
 
 import com.cts.bean.Login;
 import com.cts.bean.User;
